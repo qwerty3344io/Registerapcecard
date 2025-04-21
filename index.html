@@ -100,6 +100,9 @@ a {
     z-index: 1000;
     animation: move 2s infinite alternate ease-in-out; /* เริ่มการเคลื่อนไหว */
   }
+  #chat-qr-code p{
+    color: white;
+  }
 
   #chat-qr-code img {
     width: 100px; /* ปรับขนาด QR Code ตามต้องการ */
@@ -117,6 +120,7 @@ a {
     100% {
       transform: translateY(0); /* กลับมาที่เดิม */
     }
+   
   }
 
 </style>
@@ -149,13 +153,12 @@ a {
       </div>
       <div class="form-row">
         <label for="business-type">Business Type</label>
-        <select id="business-type" name="business-type" required>
+        <select id="business-type" name="business-type" required onchange="showOtherInput()">
           <option value="">Select Business Type</option>
           <option value="AGRICULTURE,FORESTRY AND FISHING">AGRICULTURE,FORESTRY AND FISHING</option>
           <option value="MINING">MINING</option>
           <option value="MANUFACTURING">MANUFACTURING</option>
           <option value="ELECTRICITY,GAS AND WATER SUPPLY">ELECTRICITY,GAS AND WATER SUPPLY</option>
-          <option value="large-business">large-business</option>
           <option value="CONSTRUCTION">CONSTRUCTION</option>
           <option value="WHOLESALE TRADE">WHOLESALE TRADE</option>
           <option value="RETAIL TRADE">RETAIL TRADE</option>
@@ -170,6 +173,10 @@ a {
           <option value="CULTURALAND RECREATIONAL SERVICES">CULTURALAND RECREATIONAL SERVICES</option>
           <option value="OTHER">OTHER</option>
         </select>
+        <div id="other-input-container" style="display:none;">
+          <label for="other-business-type">Please specify your business type:</label>
+          <input type="text" id="other-business-type" name="other-business-type" placeholder="Enter business type">
+        </div>
       </div>
       <div class="form-row">
         <label for="address">Address</label>
@@ -201,9 +208,23 @@ a {
     </form>
   </div>
   <div id="chat-qr-code">
-    <a href="https://your-chat-link.com" target="_blank">
+    <a href="https://line.me/ti/p/@abtc-thailand" target="_blank">
       <img src="https://www.jsccib.org/upload/images/2025/04/abtc_thailand_line_qr.png" alt="QR Code" >
     </a>
+     <p>ติดต่อเจ้าหน้าที่</p>
   </div>
 </body>
+<script>
+  function showOtherInput() {
+    var businessType = document.getElementById("business-type").value;
+    var otherInputContainer = document.getElementById("other-input-container");
+
+    // ตรวจสอบว่าผู้ใช้เลือก "OTHER" หรือไม่
+    if (businessType === "OTHER") {
+      otherInputContainer.style.display = "block"; // แสดงช่องกรอกข้อมูล
+    } else {
+      otherInputContainer.style.display = "none"; // ซ่อนช่องกรอกข้อมูล
+    }
+  }
+</script>
 </html>
