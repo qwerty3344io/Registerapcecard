@@ -81,6 +81,43 @@ a {
   color: #4CAF50;
   text-decoration: none;
 }
+#chat-qr-code {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+
+  #chat-qr-code img {
+    width: 100px; /* ปรับขนาด QR Code ตามต้องการ */
+    height: 100px;
+    border-radius: 10px;
+  }
+  #chat-qr-code {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    animation: move 2s infinite alternate ease-in-out; /* เริ่มการเคลื่อนไหว */
+  }
+
+  #chat-qr-code img {
+    width: 100px; /* ปรับขนาด QR Code ตามต้องการ */
+    height: 100px;
+  }
+
+  /* สร้าง animation สำหรับการเคลื่อนไหว */
+  @keyframes move {
+    0% {
+      transform: translateY(0); /* จุดเริ่มต้น */
+    }
+    50% {
+      transform: translateY(-10px); /* ขยับขึ้น */
+    }
+    100% {
+      transform: translateY(0); /* กลับมาที่เดิม */
+    }
+  }
 
 </style>
 <body>
@@ -162,6 +199,11 @@ a {
         <button type="submit" class="submit-btn">Register Badge</button>
       </div>
     </form>
+  </div>
+  <div id="chat-qr-code">
+    <a href="https://your-chat-link.com" target="_blank">
+      <img src="https://www.jsccib.org/upload/images/2025/04/abtc_thailand_line_qr.png" alt="QR Code" >
+    </a>
   </div>
 </body>
 </html>
