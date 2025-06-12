@@ -61,6 +61,14 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="url"], s
 input[type="checkbox"] {
   margin-right: 10px;
 }
+input[type="number"]{
+    width: 300px;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
 
 button.submit-btn {
   width: 100%;
@@ -120,9 +128,9 @@ a {
     100% {
       transform: translateY(0); /* กลับมาที่เดิม */
     }
+    
    
   }
-
 </style>
 <body>
   <div class="form-container">
@@ -178,6 +186,18 @@ a {
           <input type="text" id="other-business-type" name="other-business-type" placeholder="Enter business type">
         </div>
       </div>
+  <div class="form-row">
+        <label for="business-type">Business sector</label>
+        <select id="business-type" name="business-type" required onchange="showOtherInput()">
+          <option value="">Select Business Type</option>
+          <option value="MANUFACTURING SECTOR">MANUFACTURING SECTOR</option>
+          <option value="TRADE AND SERVICE SECTOR">TRADE AND SERVICE SECTOR</option>
+        </select>
+        </div>
+<div clss="form-number">
+        <label for="revenue">Average annual company revenue (Million Baht)</label>
+         <input type="number" id="revenue" name="revenue" min="1" max="10" value="" class="input">
+</div>
       <div class="form-row">
         <label for="address">Address</label>
         <input type="text" id="address" name="address" required>
@@ -219,12 +239,22 @@ a {
     var businessType = document.getElementById("business-type").value;
     var otherInputContainer = document.getElementById("other-input-container");
 
-    // ตรวจสอบว่าผู้ใช้เลือก "OTHER" หรือไม่
+    
     if (businessType === "OTHER") {
-      otherInputContainer.style.display = "block"; // แสดงช่องกรอกข้อมูล
+      otherInputContainer.style.display = "block"; 
     } else {
-      otherInputContainer.style.display = "none"; // ซ่อนช่องกรอกข้อมูล
+      otherInputContainer.style.display = "none"; 
     }
+  }
+
+function changeRevenue(amount) {
+    const input = document.getElementById("revenue");
+    let value = parseInt(input.value);
+    if (isNaN(value)) value = 1;
+    value += amount;
+    if (value < 1) value = 1;
+    if (value > 10) value = 10;
+    input.value = value;
   }
 </script>
 </html>
